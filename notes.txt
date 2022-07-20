@@ -1,0 +1,74 @@
+npm Commands
+
+$ npm init -y    -  this creates a package.json file
+
+package.json - a file that lists metadata about a project - its name, version, dependencies (packages used in the project), scripts, and more. In short, we use package.json to manage a project's dependencies.
+
+$ npm install [PACKAGE-NAME] - this is how we install a package.
+     example: $ npm install webpack@4.46.0 --save-dev --save-exact
+          "@4.46.0" is used to specify the version
+          "--save-exact" This flag ensures that we save the exact version of webpack to our list of dependencies in package.json. This will make so we don't have the ^ or ~ before the dependencies version in the package.json file.
+          "--save-dev" This flag specifies that we want the package to be a development dependency. It will be added to "devDependencies" in package.json. If we don't add this flag, it will automatically be added as a dependency that's available for production and development. While everything will still work correctly if we add webpack as a production dependency, we don't need webpack in production - and having unnecessary dependencies would just bloat our production code.
+
+$ npm install     -  this will install any dependencies listed in package.json
+
+      When we run "$ npm install"(with or without a package) 3 things wil happen automatically:
+          - npm will add the package to a directory named "node_modules". If this directory doesn't exist yet, npm will create it for us. 
+               (never create the "node_modules" directory yourself and do not edit it.)
+
+          - npm will add the name and version number of the package to our package.json file.
+
+          - npm will add our new dependencies to a file called "package-lock.json".
+               (this file should never be edited)
+
+--save-exact: This flag ensures that we save the exact version of webpack to our list of dependencies in package.json.
+
+^ - The caret ^ symbol tells npm to install the package at the version we specify, or a later minor version. This means that npm could install webpack-cli at version 3.3.12 or 3.4.12.
+
+~ - The tilde ~ symbol tells npm to install the package at the version we specify, or a later patch version. This means that npm could install webpack-cli at version 3.3.12 or 3.3.18.
+
+Removing Dependencies - $ npm uninstall [PACKAGE-NAME]
+     We can also remove dependecies or change versions by editing the package.json file and apply the changes with $ npm prune.
+      If the $ npm prune command doesn't work we can delete the node-modules file and run $ npm install. This will automatically repopulate the folder and all it's dependencies.
+     (Whenever you are having a problem with your development environment and you are trying to reinstall dependencies, make sure you follow these troubleshooting steps!)
+
+$ npm run [NAME-OF-SCRIPT] - this will look into our "scripts" section of our package.json file to follow the instructions that we designate to the specific script "NAME". 
+     example: 
+          /package.json
+               "scripts": {
+                    "build": "webpack"
+                 },
+           if we run $ npm run build, it will look at the "build" script and know to run "webpack".
+     - $ npm run build    - runs webpack to bundle our files. Also runs 'lint'.
+     - $ npm run start     - runs our development server at http://localhost:8080/  ( SERVER TERMINAL MUST BE LEFT OPEN). Also runs "build".
+     - $ npm run test     - runs Jest on all test files in /__tests__
+
+Loaders - preprocess code that webpack can't directly work with, which means any file that's not JavaScript. Generally loaders process code before or during the creation of our bundle, and they only work with specific file types.
+
+Plugins - are more powerful. They can modify and work with the entire bundle, so they generally run after the bundle has been created.
+
+Source Maps - allow us to look at compiled, minified and bundled code in the browser console. It also allows us to recieve descriptive error messages to help debug our code.
+
+Using comments to disable ESLint in sections of our code - 
+     expample:
+          /* eslint-disable */  or /* eslint-disable no-debugger */
+          debugger;
+          /* eslint-enable */ or /* eslint-enable no-debugger */
+
+Dependencies ( $ npm install [NAME_OF_DEPENDENCY] )
+
+- webpack (@4.46.0 --save-dev --save-exact ) : a module bundler that bundles our code into a single file to make our website more efficient at loading and processing its resources.
+- webpack-cli (@3.3.12 --save-dev) : will allow us to use webpack from the command line. CLI (command line interface).
+- css-loader (@3.6.0 --save-dev)
+- style-loader (@1.3.0 --save-dev) 
+- html-webpack(@4.5.2 --save-dev)
+- clean-webpack-plugin(@3.0.0 --save-dev) : clears the files in our dist folder before adding any new ones, each time we run $ npm run build
+- webpack-dev-server(@3.11.3 --save-dev --save-exact) : handles live reloading in our webpack projects.
+- eslint  (@8.18.0 --save-dev) : lints our JavaScript files to find any errors or style/convention issues in out code.
+- eslint-webpack-plugin (@2.7.0 --save-dev) : allows us to use ESLint with webpack.
+- bootstrap (@4.5.3) : css library
+- jest (@24.9.0 --save-dev) : a javascript testing framework.
+- @babel/core (@7.18.6 --save-dev) : babel translates our code to different formats for certain browsers and dependencies.
+- @babel/plugin-transform-modules-commonjs (@7.18.6 --save-dev) : a plugin to transform import/export statements into require statements.
+- file loader (--save-dev) : allows webpack to load image files.
+- html-loader (@1.3.2 --save-dev) : allows webpack to load and process html.
