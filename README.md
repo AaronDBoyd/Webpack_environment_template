@@ -19,6 +19,7 @@ This template was created using the the setup instructions at [learnhowtoprogram
 
 ## Setup/Installation Requirements
 * _Clone this template repo._
+* _Change the "title" section in the `/webpack.config.js` file and the `package.json` file to the tile of your project.
 * _Install all packages with `$ npm install`_
 * _Build the project using webpack with `$ npm run build`_
 * _Start development server with `$ npm run start`_
