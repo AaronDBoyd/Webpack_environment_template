@@ -34,6 +34,6 @@ This template was created using the the setup instructions at [learnhowtoprogram
 
 ## Known Bugs
 
-* _No known bugs_
+* _NOT SETUP FOR USE OF JQUERY_
 
 
